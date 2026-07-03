@@ -19,9 +19,13 @@ object WorkoutMapper {
             id = entity.id,
             name = entity.name,
             description = entity.description,
-            difficulty = Difficulty.valueOf(entity.difficulty),
+            difficulty = try {
+                Difficulty.valueOf(entity.difficulty)
+            } catch (e: Exception) {
+                Difficulty.INTERMEDIATE
+            },
             estimatedDurationMinutes = entity.estimatedDurationMinutes,
-            exercises = gson.fromJson(entity.exercises, type)
+            exercises = gson.fromJson(entity.exercises, type) ?: emptyList()
         )
     }
 

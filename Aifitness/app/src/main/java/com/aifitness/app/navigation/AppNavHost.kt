@@ -1,10 +1,16 @@
 package com.aifitness.app.navigation
-
+import com.aifitness.feature.workout.navigation.navigateToWorkoutSession
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.aifitness.app.ui.screen.*
+import com.aifitness.app.ui.screen.ChatScreen
+import com.aifitness.app.ui.screen.HealthScreen
+import com.aifitness.app.ui.screen.HomeScreen
+import com.aifitness.app.ui.screen.ProfileScreen
+import com.aifitness.app.ui.screen.StatsScreen
+import com.aifitness.app.ui.screen.TrainScreen
+import com.aifitness.feature.workout.navigation.navigateToWorkoutDetail
 import com.aifitness.feature.workout.navigation.workoutScreen
 
 @Composable
@@ -15,6 +21,7 @@ fun AppNavGraph(
         navController = navController,
         startDestination = AppDestination.Home.route
     ) {
+
         composable(AppDestination.Home.route) {
             HomeScreen(
                 onNavigateToAICoach = {
@@ -39,8 +46,15 @@ fun AppNavGraph(
             ChatScreen()
         }
 
-        // Feature Workout Navigation
-        workoutScreen()
+        // Workout Feature
+        workoutScreen(
+            onWorkoutClick = { workoutId ->
+                navController.navigateToWorkoutDetail(workoutId)
+            },
+            onStartWorkout = { workoutId ->
+                navController.navigateToWorkoutSession(workoutId)
+            }
+        )
 
         composable(AppDestination.AIHealth.route) {
             HealthScreen()

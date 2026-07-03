@@ -32,3 +32,20 @@ sealed class AppDestination(
         }
     }
 }
+object WorkoutDetail {
+
+    const val route = "workout_detail/{workoutId}"
+
+    fun createRoute(id: String): String {
+        return "workout_detail/$id"
+    }
+}
+
+object WorkoutSession {
+
+    const val route = "workout_session/{workoutId}"
+
+    fun createRoute(id: String): String {
+        return "workout_session/$id"
+    }
+}

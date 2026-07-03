@@ -51,8 +51,8 @@ fun GlassBottomNavigation(
                 spotColor = Color.Black.copy(alpha = 0.2f)
             ),
         shape = RoundedCornerShape(28.dp),
-        color = Color.White.copy(alpha = 0.85f),
-        border = BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
+        color = Color.White.copy(alpha = 0.65f),
+        border = BorderStroke(1.dp, Color.White.copy(alpha = 0.3f))
     ) {
         Row(
             modifier = Modifier

@@ -20,8 +20,12 @@ object WorkoutSessionMapper {
             workoutId = entity.workoutId,
             startTime = entity.startTime,
             endTime = entity.endTime,
-            status = WorkoutStatus.valueOf(entity.status),
-            results = gson.fromJson(entity.results, type),
+            status = try {
+                WorkoutStatus.valueOf(entity.status)
+            } catch (e: Exception) {
+                WorkoutStatus.IN_PROGRESS
+            },
+            results = gson.fromJson(entity.results, type) ?: emptyList(),
             totalCalories = entity.totalCalories
         )
     }
